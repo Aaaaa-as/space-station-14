@@ -1,0 +1,8 @@
+﻿<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.AaCustom.UI">
+    <BoxContainer Orientation="Horizontal">
+        <Button Name="Button1" Access="Public" Text="Button 1" StyleClasses="OpenRight"></Button>
+        <Button Name="Button2" Access="Public" Text="Button 2" StyleClasses="OpenLeft"></Button>
+    </BoxContainer>
+</DefaultWindow>

@@ -1,0 +1,10 @@
+﻿- type: sourcePort
+  id: Button1Pressed
+  name: Button 1 pressed
+  description: Invoked on pressing Button 1
+
+
+- type: sourcePort
+  id: Button2Pressed
+  name: Button 2 pressed
+  description: Invoked on pressing Button 2

@@ -1,0 +1,36 @@
+﻿- type: entity
+  id: TwoButtonPanel
+  name: Two button panel
+  description: Panel with two independent buttons
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: StationAiWhitelist
+  - type: WallMount
+    arc: 360
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    canCollide: false
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch.rsi
+    state: dead
+  - type: TwoButtonPanel
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSource
+    ports:
+    - Button1Pressed
+    - Button2Pressed
+  - type: Tag
+    tags:
+    - Structure
+  - type: UserInterface
+    interfaces:
+      enum.TwoButtonPanelUiKey.Key:
+        type: TwoButtonPanelBoundUserInterface
