@@ -16,6 +16,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Labels.Components;
 using Content.Shared.Storage;
 using Content.Server.Hands.Systems;
+using Content.Shared.Chemistry.Components;
 
 namespace Content.Server.Chemistry.EntitySystems
 {
@@ -34,6 +35,7 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly OpenableSystem _openable = default!;
         [Dependency] private readonly HandsSystem _handsSystem = default!;
+
 
         public override void Initialize()
         {
@@ -146,14 +148,74 @@ namespace Content.Server.Chemistry.EntitySystems
             {
                 // force open container, if applicable, to avoid confusing people on why it doesn't dispense
                 _openable.SetOpen(storedContainer, true);
-                _solutionTransferSystem.Transfer(reagentDispenser,
-                        storedContainer, src.Value,
-                        outputContainer.Value, dst.Value,
+                if (reagentDispenser.Comp.Infinite)
+                {
+                    CloneTransfer(reagentDispenser,
+                        storedContainer,
+                        src.Value,
+                        outputContainer.Value,
+                        dst.Value,
                         (int)reagentDispenser.Comp.DispenseAmount);
+                }
+                else
+                {
+                    _solutionTransferSystem.Transfer(reagentDispenser,
+                        storedContainer,
+                        src.Value,
+                        outputContainer.Value,
+                        dst.Value,
+                        (int)reagentDispenser.Comp.DispenseAmount);
+                }
             }
 
             UpdateUiState(reagentDispenser);
             ClickSound(reagentDispenser);
+        }
+
+        private FixedPoint2 CloneTransfer(EntityUid user,
+            EntityUid sourceEntity,
+            Entity<SolutionComponent> source,
+            EntityUid targetEntity,
+            Entity<SolutionComponent> target,
+            FixedPoint2 amount)
+        {
+            var transferAttempt = new SolutionTransferAttemptEvent(sourceEntity, targetEntity);
+
+            // Check if the source is cancelling the transfer
+            RaiseLocalEvent(sourceEntity, ref transferAttempt);
+            if (transferAttempt.CancelReason is {} reason)
+            {
+                return FixedPoint2.Zero;
+            }
+
+            var sourceSolution = source.Comp.Solution;
+            if (sourceSolution.Volume == 0)
+            {
+                return FixedPoint2.Zero;
+            }
+
+            // Check if the target is cancelling the transfer
+            RaiseLocalEvent(targetEntity, ref transferAttempt);
+            if (transferAttempt.CancelReason is {} targetReason)
+            {
+                return FixedPoint2.Zero;
+            }
+
+            var targetSolution = target.Comp.Solution;
+            if (targetSolution.AvailableVolume == 0)
+            {
+                return FixedPoint2.Zero;
+            }
+
+
+            var solution = source.Comp.Solution.Clone();
+            solution.ScaleSolution(amount.Float()/solution.Volume.Float());
+            _solutionContainerSystem.AddSolution(target, solution);
+
+            var ev = new SolutionTransferredEvent(sourceEntity, targetEntity, user, amount);
+            RaiseLocalEvent(targetEntity, ref ev);
+
+            return amount;
         }
 
         private void OnEjectReagentMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserEjectContainerMessage message)

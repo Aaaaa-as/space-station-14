@@ -1,4 +1,4 @@
-using Content.Shared.Whitelist;
+﻿using Content.Shared.Whitelist;
 using Content.Shared.Containers.ItemSlots;
 using Content.Server.Chemistry.EntitySystems;
 using Content.Shared.Chemistry;
@@ -19,6 +19,12 @@ namespace Content.Server.Chemistry.Components
 
         [DataField("clickSound"), ViewVariables(VVAccess.ReadWrite)]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
+
+        ///<summary>
+        /// Enables infinite reagents
+        /// </summary>
+        [DataField("infinite"), ViewVariables(VVAccess.ReadWrite)]
+        public bool Infinite = false;
 
         [ViewVariables(VVAccess.ReadWrite)]
         public ReagentDispenserDispenseAmount DispenseAmount = ReagentDispenserDispenseAmount.U10;

@@ -77,3 +77,33 @@
       - id: JugSilicon
       - id: JugSodium
       - id: JugSulfur
+
+- type: entity
+  id: ChemDispenserAdmin
+  suffix: Admin
+  parent: ChemDispenserEmpty
+  components:
+  - type: ReagentDispenser
+    infinite: True
+  - type: StorageFill
+    contents:
+    - id: JugAluminium
+    - id: JugCarbon
+    - id: JugChlorine
+    - id: JugCopper
+    - id: JugEthanol
+    - id: JugFluorine
+    - id: JugSugar
+    - id: JugHydrogen
+    - id: JugIodine
+    - id: JugIron
+    - id: JugLithium
+    - id: JugMercury
+    - id: JugNitrogen
+    - id: JugOxygen
+    - id: JugPhosphorus
+    - id: JugPotassium
+    - id: JugRadium
+    - id: JugSilicon
+    - id: JugSodium
+    - id: JugSulfur
