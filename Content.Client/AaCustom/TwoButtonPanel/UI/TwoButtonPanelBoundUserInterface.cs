@@ -1,8 +1,7 @@
-﻿using Content.Shared.AaCustom.Components;
-using JetBrains.Annotations;
-using static Content.Shared.AaCustom.Components.SharedTwoButtonPanelComponent;
+﻿using JetBrains.Annotations;
+using static Content.Shared.AaCustom.TwoButtonPanel.SharedTwoButtonPanelComponent;
 
-namespace Content.Client.AaCustom.UI;
+namespace Content.Client.AaCustom.TwoButtonPanel.UI;
 
 [UsedImplicitly]
 public sealed class TwoButtonPanelBoundUserInterface : BoundUserInterface

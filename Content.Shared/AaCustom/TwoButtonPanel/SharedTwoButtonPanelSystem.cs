@@ -1,4 +1,4 @@
-﻿namespace Content.Shared.AaCustom.Systems;
+﻿namespace Content.Shared.AaCustom.TwoButtonPanel;
 
 /// <summary>
 /// This handles...

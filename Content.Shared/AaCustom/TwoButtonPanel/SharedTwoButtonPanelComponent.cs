@@ -1,7 +1,7 @@
 ﻿using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.AaCustom.Components;
+namespace Content.Shared.AaCustom.TwoButtonPanel;
 
 /// <summary>
 /// This is used for...

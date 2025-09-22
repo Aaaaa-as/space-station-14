@@ -1,14 +1,12 @@
-﻿using Content.Server.AaCustom.Components;
-using Content.Server.DeviceLinking.Systems;
-using Content.Shared.AaCustom.Components;
-using Content.Shared.AaCustom.Systems;
+﻿using Content.Server.DeviceLinking.Systems;
+using Content.Shared.AaCustom.TwoButtonPanel;
 using Content.Shared.Disposal.Components;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 
-namespace Content.Server.AaCustom.Systems;
+namespace Content.Server.AaCustom.TwoButtonPanel;
 
 public sealed class TwoButtonPanelSystem : SharedTwoButtonPanelSystem
 {

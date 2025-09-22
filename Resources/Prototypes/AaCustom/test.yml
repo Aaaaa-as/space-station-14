@@ -34,3 +34,35 @@
     interfaces:
       enum.TwoButtonPanelUiKey.Key:
         type: TwoButtonPanelBoundUserInterface
+
+
+
+
+- type: entity
+  id: MonkeySpawner
+  name: monkey spawner
+  description: Spawns monkey on signal
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Objects/Specific/Janitorial/drain.rsi
+    state: icon
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: SignalSpawner
+    spawn: MobMonkey
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Trigger

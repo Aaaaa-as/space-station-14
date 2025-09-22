@@ -1,6 +1,6 @@
-﻿using Content.Shared.AaCustom.Components;
+﻿using Content.Shared.AaCustom.TwoButtonPanel;
 
-namespace Content.Server.AaCustom.Components;
+namespace Content.Server.AaCustom.TwoButtonPanel;
 
 /// <summary>
 /// This is used for...

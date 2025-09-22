@@ -2,7 +2,7 @@
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client.AaCustom.UI;
+namespace Content.Client.AaCustom.TwoButtonPanel.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class TwoButtonPanelWindow : DefaultWindow
